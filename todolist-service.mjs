@@ -38,4 +38,16 @@ export class TodoListService {
         })
     }
 
+    deleteTodo(req, res) {
+        req.addListener("data", (data) => {
+            const body = JSON.parse(data.toString());
+            if (this.todolist[body.id]) {
+                this.todolist.splice(body.id, 1);
+            }
+
+            res.write(this.getJsonTodoList());
+            res.end();
+        })
+    }
+
 }

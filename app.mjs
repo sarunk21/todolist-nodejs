@@ -12,6 +12,8 @@ const server = http.createServer((req, res) => {
         service.createTodo(req, res);
     } else if (req.method === "PUT") {
         service.updateTodo(req, res)
+    } else if (req.method === "DELETE") {
+        service.deleteTodo(req, res)
     }
 
 });
