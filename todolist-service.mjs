@@ -26,4 +26,16 @@ export class TodoListService {
         })
     }
 
+    updateTodo(req, res) {
+        req.addListener("data", (data) => {
+            const body = JSON.parse(data.toString());
+            if (this.todolist[body.id]) {
+                this.todolist[body.id] = body.todo
+            }
+
+            res.write(this.getJsonTodoList());
+            res.end();
+        })
+    }
+
 }
